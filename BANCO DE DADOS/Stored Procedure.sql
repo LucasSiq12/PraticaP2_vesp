@@ -1,15 +1,27 @@
-CREATE OR ALTER PROCEDURE restaurante.spCliente
-	@idCliente char(5)
+CREATE PROCEDURE restaurante.sp_cliente
+	@Nome_Cliente varchar (55),
+	@CPF_Cliente char (11),
+	@Data_NascCliente date,
+	@Telefone varchar (11),
+	@Email varchar (55),
+	@Senha_Cliente varchar (10)
 AS
 BEGIN
-	if exists (select id_Cliente from restaurante.Cadastro_Cliente where id_Cliente = @idCliente)
-	begin
-		delete from restaurante.Cadastro_Cliente WHERE id_Cliente = @idCliente
-	end
-	else
-	begin
-		raiserror ('Cliente não encontrado',1,1)
-	end
-END
+	INSERT INTO Clientes (NOME, CPF, DATANASC, TELEFONE, EMAIL, SENHA)
+	VALUES (@Nome_Cliente, @CPF_Cliente, @Data_NascCliente, @Telefone, @Email, @Senha_Cliente)
+END;
 
-DROP PROCEDURE restaurante.spCliente
+CREATE PROCEDURE AtualizarCliente
+	@novoNomeCliente varchar (55),
+	@novoCPFcliente char (11),
+	@novoDataNascCliente date,
+	@novoTelefone varchar (11),
+	@novoEmail varchar (55),
+	@novoSenhaCliente varchar (10)
+AS
+BEGIN
+	UPDATE Clientes
+	SET NOME = @novoNomeCliente, CPF = @novoCPFcliente,
+		DATANASC = @novoDataNascCliente, TELEFONE = @novoTelefone, EMAIL = @novoEmail,
+		SENHA = @novoSenhaCliente
+	WHERE ID = @id_cliente

@@ -16,7 +16,7 @@ BEGIN
 		   @Data_NascCliente = Data_NascCliente, @Telefone = Telefone, @Email = Email, @senha_Cliente = senha_Cliente
 
 	FROM Inserted
-	print 'Cadastro recém-inserido:'
+	print 'Cadastro recï¿½m-inserido:'
 	print 'ID do Cliente '+cast(@id_Cliente as char)
 	print 'Nome do Cliente '+cast(@Nome_Cliente as varchar)
 	print 'CPF do Cliente '+cast(@CPF_Cliente as char)
@@ -27,19 +27,19 @@ BEGIN
 
 	if @Data_NascCliente <= 10
 	BEGIN
-			print'Crinça paga meia'
-			RAISERROR('Criança paga meia',1,1);
+			print'Crinï¿½a paga meia'
+			RAISERROR('Crianï¿½a paga meia',1,1);
 	END
 	else
 			print'Paga normal'
 
 	if @Data_NascCliente >= 18
 	BEGIN
-			print'Permitido beber bebidas alcólicas'
-			RAISERROR('Permitido beber bebidas alcólicas',1,1);
+			print'Permitido beber bebidas alcï¿½licas'
+			RAISERROR('Permitido beber bebidas alcï¿½licas',1,1);
 	END
 	else
-			print'Proibido beber bebidas alcólicas'
+			print'Proibido beber bebidas alcï¿½licas'
 END;
 
 CREATE TRIGGER trMesa
@@ -101,7 +101,7 @@ BEGIN
 			print'Mesa Reservada, reserve outra mesa'
 	END
 	else
-			print'Mesa Disponível'
+			print'Mesa Disponï¿½vel'
 
 
 END;
@@ -125,15 +125,15 @@ BEGIN
 	FROM Inserted
 	print 'Ingrediente:'
 	print 'ID do Ingrediente '+cast(@id_Ingrediente as char)
-	print 'Preço do Ingrediente '+cast(@Preco_Ingrediente as float)
-	print 'Data de fabricação '+cast(@Data_Fabricacao as datetime)
+	print 'Preï¿½o do Ingrediente '+cast(@Preco_Ingrediente as float)
+	print 'Data de fabricaï¿½ï¿½o '+cast(@Data_Fabricacao as datetime)
 	print 'Data de vencimento '+cast(@Data_Vencimento as datetime)
-	print 'Descrição '+cast(@Descricao as float)
+	print 'Descriï¿½ï¿½o '+cast(@Descricao as float)
 	print 'ID do Fornecedor '+cast(@id_Fornecedor as char)
 
 	if @Data_Vencimento >= @Data_Vencimento
 	BEGIN
-			print'Ingrediente não proprio para uso'
+			print'Ingrediente nï¿½o proprio para uso'
 	END
 	else
 			print'Ingrediente propio para uso'
