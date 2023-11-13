@@ -103,3 +103,16 @@ begin
  insert into Funcionario (id_Funcionario, Nome_Funcionario, Data_NascFunci, Data_Contratacao, CPF_Funcionario, Tel_Funcionario, email_Funcionario, senha_Funcionario, id_Pedido)
  values (@idFuncionario, @nomeFuncionario, @dataFuncionario, @dataContrato, @cpfFuncionario, @telFuncionario, @emailFuncionario, @senhaFuncionario, @idPedido);
 end;
+
+create procedure Nota
+    @idNota char (5),
+    @totalNota float (6),
+    @idCliente char (5),
+    @idMesa char (2),
+    @idReserva char (3),
+    @idPrato char (5)
+as
+begin
+    insert into Nota (id_Nota, Total_Nota, id_Cliente, id_Mesa, id_Reserva, id_Prato)
+    values (@idNota, @totalNota, @idCliente, @idMesa, @idReserva, @idPrato);
+end;
