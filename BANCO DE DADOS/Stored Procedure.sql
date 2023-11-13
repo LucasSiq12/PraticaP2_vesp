@@ -73,3 +73,17 @@ begin
  values (@idIngrediente, @precoIngredinete, @dataFabricacao, @dataVencimento, @descricao, @idFornecedor);
 
 end;
+
+create procedure InserirFornecedor
+    @idFornecedor char (5),
+    @telFornecedor varchar(11),
+    @emailFornecedor varchar(50),
+    @nomeEmpresa varchar (50),
+    @emailEmpresa varchar(50),
+    @telEmpresa varchar(11),
+    @idIngrediente char(5)
+as
+begin
+    insert into Fornecedor (id_Fornecedor, Tel_Fornecedor, email_Fornecedor, Nome_Empresa, email_Empresa, Tel_Empresa, id_Ingrediente)
+    values (@idFornecedor, @telFornecedor, @emailFornecedor, @nomeEmpresa, @emailEmpresa, @telEmpresa, @idIngrediente);
+end;
