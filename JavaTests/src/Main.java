@@ -3,10 +3,10 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 
-public class ConnectionSQL {
+public class Main {
 
     public static void main(String[] args) {
-        String jdbcUrl = "jdbc:sqlserver://REGULUS:1433;databaseNome=BD23325";
+        String jdbcUrl = "jdbc:sqlserver://seu_servidor:porta;databaseNome=seu_banco_dados";
         String usuario = "seu_usuario";
         String senha = "sua_senha";
 
