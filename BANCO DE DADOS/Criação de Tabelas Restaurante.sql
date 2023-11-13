@@ -15,12 +15,14 @@ CREATE TABLE restaurante.Mesa
 (
 	id_Mesa char (2) not null,
 	Quant_Pessoas varchar (6) not null,
+	Status_Mesa varchar (20) not null,
 	PRIMARY KEY (id_Mesa)
 )
 
 CREATE TABLE restaurante.Reserva
 (
 	id_Reserva char (3) not null,
+	NovaMesa char (3) not null,
 	Data_Reserva date not null,
 	Hora_Inicio time not null,
 	Hora_Fim time not null,
@@ -64,6 +66,7 @@ CREATE TABLE restaurante.Ingrediente
 	Preco_Ingrediente float (6) not null,
 	Data_Fabricacao date not null,
 	Data_Vencimento date not null,
+	dataIngrediente date not null,
 	Descricao varchar (150) not null,
 	id_Fornecedor char (5) not null,
 	PRIMARY KEY (id_Ingrediente),
