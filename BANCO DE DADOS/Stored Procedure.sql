@@ -87,3 +87,19 @@ begin
     insert into Fornecedor (id_Fornecedor, Tel_Fornecedor, email_Fornecedor, Nome_Empresa, email_Empresa, Tel_Empresa, id_Ingrediente)
     values (@idFornecedor, @telFornecedor, @emailFornecedor, @nomeEmpresa, @emailEmpresa, @telEmpresa, @idIngrediente);
 end;
+
+create procedure InserirFuncionario
+    @idFuncionario char (5),
+    @nomeFuncionario varchar (55),
+    @dataFuncionario date,
+    @dataContrato date,
+    @cpfFuncionario char (11),
+    @telFuncionario varchar (11),
+    @emailFuncionario varchar (50),
+    @senhaFuncionario varchar (10),
+    @idPedido char (3)
+as
+begin
+ insert into Funcionario (id_Funcionario, Nome_Funcionario, Data_NascFunci, Data_Contratacao, CPF_Funcionario, Tel_Funcionario, email_Funcionario, senha_Funcionario, id_Pedido)
+ values (@idFuncionario, @nomeFuncionario, @dataFuncionario, @dataContrato, @cpfFuncionario, @telFuncionario, @emailFuncionario, @senhaFuncionario, @idPedido);
+end;
