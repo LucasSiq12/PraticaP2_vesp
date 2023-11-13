@@ -1,4 +1,4 @@
-CREATE TRIGGER trCliente
+create TRIGGER trCliente
 ON restaurante.Cadastro_Cliente
 for INSERT, UPDATE AS
 BEGIN
@@ -16,7 +16,7 @@ BEGIN
 		   @Data_NascCliente = Data_NascCliente, @Telefone = Telefone, @Email = Email, @senha_Cliente = senha_Cliente
 
 	FROM Inserted
-	print 'Cadastro rec�m-inserido:'
+	print 'Cadastro recém-inserido:'
 	print 'ID do Cliente '+cast(@id_Cliente as char)
 	print 'Nome do Cliente '+cast(@Nome_Cliente as varchar)
 	print 'CPF do Cliente '+cast(@CPF_Cliente as char)
@@ -25,21 +25,21 @@ BEGIN
 	print 'Email do Cliente '+cast(@Email as char)
 	print 'Senha do Cliente '+cast(@senha_Cliente as char)
 
-	if @Data_NascCliente <= 10
+	if datediff(year, @Data_NascCliente, getdate()) <= 10
 	BEGIN
-			print'Crin�a paga meia'
-			RAISERROR('Crian�a paga meia',1,1);
+			print'Crinça paga meia'
+			RAISERROR('Criança paga meia',1,1);
 	END
 	else
 			print'Paga normal'
 
 	if @Data_NascCliente >= 18
 	BEGIN
-			print'Permitido beber bebidas alc�licas'
-			RAISERROR('Permitido beber bebidas alc�licas',1,1);
+			print'Permitido beber bebidas alcólicas'
+			RAISERROR('Permitido beber bebidas alcólicas',1,1);
 	END
 	else
-			print'Proibido beber bebidas alc�licas'
+			print'Proibido beber bebidas alcólicas'
 END;
 
 CREATE TRIGGER trMesa
@@ -81,14 +81,16 @@ BEGIN
 	@Hora_Fim time,
 	@Preco_Reserva float,
 	@id_Mesa int,
-	@id_Cliente int
+	@id_Cliente int,
+	@NovaMesa int
 
 	select @id_Reserva = id_Reserva, @Data_Reserva = Data_Reserva, @Hora_Inicio = Hora_Inicio,
-		   @Hora_Fim = Hora_Fim, @Preco_Reserva = Preco_Reserva, @id_Mesa = id_Mesa, @id_Mesa = id_Mesa
+		   @Hora_Fim = Hora_Fim, @Preco_Reserva = Preco_Reserva, @id_Mesa = id_Mesa, @id_Mesa = id_Mesa, @NovaMesa = NovaMesa
 
 	FROM Inserted
 	print 'Inserir Reserva:'
 	print 'ID da Reserva '+cast(@id_Reserva as char)
+	print 'Nova Reserva de Mesa '+cast(@NovaMesa as char)
 	print 'Data da Reserva '+cast(@Data_Reserva as datetime)
 	print 'Hora inicial da Reserva '+cast(@Hora_Inicio as datetime)
 	print 'Horario final da Reserva '+cast(@Hora_Fim as datetime)
@@ -96,13 +98,13 @@ BEGIN
 	print 'ID da Mesa '+cast(@id_Mesa as char)
 	print 'ID do Cliente '+cast(@id_Cliente as char)
 
-	if @id_Mesa = @id_Mesa
+	if datediff(year, @NovaMesa, getdate()) <= @id_Mesa
 	BEGIN
 			print'Mesa Reservada, reserve outra mesa'
+			RAISERROR('Mesa Reservada, reserve outra mesa',1,1);
 	END
 	else
-			print'Mesa Dispon�vel'
-
+			print'Mesa Disponível'
 
 END;
 
@@ -117,23 +119,25 @@ BEGIN
 	@Data_Fabricacao datetime,
 	@Data_Vencimento datetime,
 	@Descricao varchar,
-	@id_Fornecedor int
+	@id_Fornecedor int,
+	@dataIngrediente datetime
 
 	select @id_Ingrediente = id_Ingrediente, @Preco_Ingrediente = Preco_Ingrediente, @Data_Fabricacao = Data_Fabricacao,
-		   @Data_Vencimento = Data_Vencimento, @Descricao = Descricao, @id_Fornecedor = id_Fornecedor
+		   @Data_Vencimento = Data_Vencimento, @Descricao = Descricao, @id_Fornecedor = id_Fornecedor, @dataIngrediente = dataIngrediente
 
 	FROM Inserted
 	print 'Ingrediente:'
 	print 'ID do Ingrediente '+cast(@id_Ingrediente as char)
-	print 'Pre�o do Ingrediente '+cast(@Preco_Ingrediente as float)
-	print 'Data de fabrica��o '+cast(@Data_Fabricacao as datetime)
+	print 'Preço do Ingrediente '+cast(@Preco_Ingrediente as float)
+	print 'Data do Ingrediente '+cast(@dataIngrediente as datetime)
+	print 'Data de fabricação '+cast(@Data_Fabricacao as datetime)
 	print 'Data de vencimento '+cast(@Data_Vencimento as datetime)
-	print 'Descri��o '+cast(@Descricao as float)
+	print 'Descrição '+cast(@Descricao as float)
 	print 'ID do Fornecedor '+cast(@id_Fornecedor as char)
 
-	if @Data_Vencimento >= @Data_Vencimento
+	if datediff(year, @dataIngrediente, getdate()) <= @Data_Vencimento
 	BEGIN
-			print'Ingrediente n�o proprio para uso'
+			print'Ingrediente não proprio para uso'
 	END
 	else
 			print'Ingrediente propio para uso'

@@ -1,27 +1,14 @@
-CREATE PROCEDURE restaurante.sp_cliente
-	@Nome_Cliente varchar (55),
-	@CPF_Cliente char (11),
-	@Data_NascCliente date,
-	@Telefone varchar (11),
-	@Email varchar (55),
-	@Senha_Cliente varchar (10)
-AS
-BEGIN
-	INSERT INTO Clientes (NOME, CPF, DATANASC, TELEFONE, EMAIL, SENHA)
-	VALUES (@Nome_Cliente, @CPF_Cliente, @Data_NascCliente, @Telefone, @Email, @Senha_Cliente)
-END;
+CREATE PROCEDURE InserirCliente
 
-CREATE PROCEDURE AtualizarCliente
-	@novoNomeCliente varchar (55),
-	@novoCPFcliente char (11),
-	@novoDataNascCliente date,
-	@novoTelefone varchar (11),
-	@novoEmail varchar (55),
-	@novoSenhaCliente varchar (10)
+    @idCliente char(5),
+    @NomeCliente varchar (55),
+    @CPFcliente char (11),
+    @DataCliente date,
+    @Telefone varchar (11),
+    @Email varchar (55),
+    @senhaCliente varchar (10)
 AS
 BEGIN
-	UPDATE Clientes
-	SET NOME = @novoNomeCliente, CPF = @novoCPFcliente,
-		DATANASC = @novoDataNascCliente, TELEFONE = @novoTelefone, EMAIL = @novoEmail,
-		SENHA = @novoSenhaCliente
-	WHERE ID = @id_cliente
+    INSERT INTO Cadastro_Cliente (id_Cliente, Nome_Cliente, CPF_Cliente, Data_NascCliente, Telefone, Email, senha_Cliente)
+    VALUES (@idCliente, @NomeCliente, @CPFcliente, @DataCliente, @Telefone, @Email, @senhaCliente);
+end;
