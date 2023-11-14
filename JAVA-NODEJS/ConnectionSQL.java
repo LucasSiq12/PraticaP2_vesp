@@ -1,35 +1,26 @@
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ConnectionSQL {
+public class ConnectionSQL
+{
+    public static void main(String[] args)
+    {
+        String url = "jdbc:sqlserver://REGULUS:1433;datbaseName=BD23325";
+        String usuario = "BD23325";
+        String senha = "BD23325";
 
-    public static void main(String[] args) {
-        String jdbcUrl = "jdbc:sqlserver://REGULUS:1433;databaseNome=BD23325";
-        String usuario = "seu_usuario";
-        String senha = "sua_senha";
+        try
+        {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection conexao = DriverManager.getConnection(url, usuario, senha);
 
-        try (Connection connection = DriverManager.getConnection(jdbcUrl, usuario, senha)) {
-            exibirTabelas(connection);
-        } catch (Exception e) {
-            e.printStackTrace();
+            //Lógica
+
+            conexao.close();
         }
-    }
-
-    private static void exibirTabelas(Connection connection) {
-        try {
-            DatabaseMetaData metaData = connection.getMetaData();
-            ResultSet resultSet = metaData.getTables(null, null, "%", new String[]{"TABLE"});
-
-            System.out.println("Tabelas no banco de dados:");
-
-            while (resultSet.next()) {
-                String nomeTabela = resultSet.getString("TABLE_NAME");
-                System.out.println(nomeTabela);
-            }
-
-        } catch (Exception e) {
+        catch (ClassNotFoundException | SQLException e)
+        {
             e.printStackTrace();
         }
     }
