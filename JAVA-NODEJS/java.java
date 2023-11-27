@@ -57,14 +57,14 @@ public class java {
                 sqlBuilder.append(coluna).append(", ");
             }
 
-            sqlBuilder.delete(sqlBuilder.length() - 2, sqlBuilder.length()); // Remover a última vírgula
+            sqlBuilder.delete(sqlBuilder.length() - 2, sqlBuilder.length()); 
             sqlBuilder.append(") VALUES (");
 
             for (int i = 0; i < dados.size(); i++) {
                 sqlBuilder.append("?, ");
             }
 
-            sqlBuilder.delete(sqlBuilder.length() - 2, sqlBuilder.length()); // Remover a última vírgula
+            sqlBuilder.delete(sqlBuilder.length() - 2, sqlBuilder.length()); 
             sqlBuilder.append(")");
 
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sqlBuilder.toString())) {
@@ -90,10 +90,8 @@ public class java {
                 sqlBuilder.append(coluna).append(" = ?, ");
             }
 
-            sqlBuilder.delete(sqlBuilder.length() - 2, sqlBuilder.length()); // Remover a última vírgula
-            sqlBuilder.append(" WHERE ");
+            sqlBuilder.delete(sqlBuilder.length() - 2, sqlBuilder.length()); 
 
-            // Adicione aqui a condição de atualização, por exemplo: id = ?
 
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sqlBuilder.toString())) {
                 int index = 1;
@@ -101,7 +99,6 @@ public class java {
                     preparedStatement.setObject(index++, valor);
                 }
 
-                // Defina os parâmetros para a condição de atualização, por exemplo: preparedStatement.setInt(index++, id);
 
                 int linhasAfetadas = preparedStatement.executeUpdate();
 

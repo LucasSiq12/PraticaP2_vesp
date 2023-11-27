@@ -5,32 +5,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CadastroLoginGUI extends JFrame {
-    private Map<String, String> usuarios; // Simula um banco de dados de usuários
+    private Map<String, String> usuarios; 
 
     public CadastroLoginGUI() {
         usuarios = new HashMap<>();
 
-        // Configurações da janela
+   
         setTitle("Cadastro e Login");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Componentes
+    
         JPanel painel = new JPanel();
         JLabel rotulo = new JLabel("Bem-vindo! Escolha uma opção:");
         JButton btnCadastro = new JButton("Cadastro");
         JButton btnLogin = new JButton("Login");
 
-        // Adiciona componentes ao painel
         painel.add(rotulo);
         painel.add(btnCadastro);
         painel.add(btnLogin);
 
-        // Adiciona o painel à janela
+
         add(painel);
 
-        // Listeners
         btnCadastro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
