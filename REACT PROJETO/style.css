@@ -12,10 +12,10 @@
 :root
 {
     --main-color: #ff9f0d;
-    --text-color: #fff;
+    --text-color: rgb(0, 0, 0);
     --other-color: #212121;
-    --second-color: #9e9e9e;
-    --bg-color: #111111;
+    --second-color: #828080;
+    --bg-color: #ffffff;
 
     --big-font: #4.5rem;
     --h2-font: 2.6rem;
@@ -30,7 +30,7 @@ header
 {
     position: fixed;
     width: 100%;
-    top: -20px;
+    top: -10px;
     right: 13px;
     z-index: 1000;
     display: flex;
@@ -42,7 +42,7 @@ header
 }
 .logo-principal
 {
-    width: 50%;
+    width: 40%;
 }
 .logo
 {
@@ -64,7 +64,7 @@ header
 }
 .navList a
 {
-    color: var(--text-color);
+    color: white;
     font-size: var(--p-font);
     font-weight: 600;
     margin: 0 30px;
@@ -193,4 +193,77 @@ span
     background: var(--main-color);
     color: var(--bg-color);
     box-shadow: #ff9f0d 0px 1px 25px;
+}
+header
+{
+    padding: 12px 14%;
+    background: var(--other-color);
+}
+.recipiente
+{
+    padding: 30px 14% 70px;
+    display:  grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+    gap: 2rem;
+    text-align: center;
+}
+.recipiente-box
+{
+    padding: 43px 43px 43px 43px;
+    background: var(--other-color);
+    border-radius: 3rem;
+}
+.recipiente-box img
+{
+    width: 100%;
+    max-width: 50px;
+    height: auto;
+}
+.recipiente-box h3
+{
+    font-size: 21px;
+    font-weight: bold;
+    margin: 16px 0;
+    color: white;
+}
+.recipiente-box a
+{
+    color: var(--second-color);
+    font-size: var(--p-font);
+    letter-spacing: 1px;
+    transition: all .50s ease;
+}
+.recipiente-box a:hover
+{
+    color: var(--main-color);
+}
+.sobre
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 4rem;
+}
+.img2
+{
+    width: 110%;
+    height: auto;
+    border-radius: 15%;
+    transition: all .5s;
+    
+}
+.sobre-txt
+{
+    padding: 50px;
+}
+.sobre-txt h2
+{
+    font-size: var(--h2-font);
+    line-height: 1.3;
+    margin-bottom: 2rem;
+}
+.sobre-txt p
+{
+    color: var(--second-color);
+    margin-bottom: 3rem;
 }
