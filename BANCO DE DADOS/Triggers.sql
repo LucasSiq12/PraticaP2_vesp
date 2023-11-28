@@ -1,35 +1,32 @@
-create TRIGGER trCliente
-ON restaurante.Cadastro_Cliente
+create TRIGGER trBebidasAlcool
+ON restaurante.BebidasAlcool
 for INSERT, UPDATE AS
 BEGIN
 	SET NOCOUNT ON;
 	DECLARE 
-	@id_Cliente int,
-	@Nome_Cliente char,
-	@CPF_Cliente char,
-	@Data_NascCliente datetime,
-	@Telefone varchar,
-	@Email varchar,
-	@senha_Cliente char
+	@id_BebidasAlcool int,
+	@Preco_BebidasAlcool float,
+	@Descricao varchar,
+	@id_Ingrediente int,
+	@Data_NascClienteBebi datetime
 
-	select @id_Cliente = id_Cliente, @Nome_Cliente = Nome_Cliente, @CPF_Cliente = CPF_Cliente,
-		   @Data_NascCliente = Data_NascCliente, @Telefone = Telefone, @Email = Email, @senha_Cliente = senha_Cliente
+	select @id_BebidasAlcool = id_BebidasAlcool, @Preco_BebidasAlcool = Preco_BebidasAlcool, @Descricao = Descricao,
+		   @id_Ingrediente = id_Ingrediente, @Data_NascClienteBebi = Data_NascClienteBebi
 
 	FROM Inserted
-	print 'Cadastro recÃ©m-inserido:'
-	print 'ID do Cliente '+cast(@id_Cliente as char)
-	print 'Nome do Cliente '+cast(@Nome_Cliente as varchar)
-	print 'CPF do Cliente '+cast(@CPF_Cliente as char)
-	print 'Data de Nascimento do Cliente '+cast(@Data_NascCliente as datetime)
-	print 'Telefone do Cliente '+cast(@Telefone as varchar)
-	print 'Email do Cliente '+cast(@Email as char)
-	print 'Senha do Cliente '+cast(@senha_Cliente as char)
+	print 'Cadastro recém-inserido:'
+	print 'ID da Bebida '+cast(@id_BebidasAlcool as char)
+	print 'Preço da bebida '+cast(@Preco_BebidasAlcool as float)
+	print 'Descrição da bebida '+cast(@Descricao as varchar)
+	print 'ID do Ingrediente '+cast(@id_Ingrediente as char)
+	print 'Data de Nascimento '+cast(@Data_NascClienteBebi as datetime)
+	
 
 
-	if datediff(year, @Data_NascCliente, getdate()) <= 18	
+	if datediff(year, @Data_NascClienteBebi, getdate()) <= 18	
 	BEGIN
 
-			RAISERROR('ProÃ­bido beber bebidas alcoÃ³licas',1,1);
+			RAISERROR('Proíbido beber bebidas alcoólicas',1,1);
 	END
 END;
 
@@ -113,15 +110,15 @@ BEGIN
 	FROM Inserted
 	print 'Ingrediente:'
 	print 'ID do Ingrediente '+cast(@id_Ingrediente as char)
-	print 'PreÃ§o do Ingrediente '+cast(@Preco_Ingrediente as float)
+	print 'Preço do Ingrediente '+cast(@Preco_Ingrediente as float)
 	print 'Data do Ingrediente '+cast(@dataIngrediente as datetime)
-	print 'Data de fabricaÃ§Ã£o '+cast(@Data_Fabricacao as datetime)
+	print 'Data de fabricação '+cast(@Data_Fabricacao as datetime)
 	print 'Data de vencimento '+cast(@Data_Vencimento as datetime)
-	print 'DescriÃ§Ã£o '+cast(@Descricao as float)
+	print 'Descrição '+cast(@Descricao as float)
 	print 'ID do Fornecedor '+cast(@id_Fornecedor as char)
 
 	if datediff(year, @dataIngrediente, getdate()) <= @Data_Vencimento
 	BEGIN
-			RAISERROR('Ingrediente nÃ£o proprio para uso',1,1);
+			RAISERROR('Ingrediente não proprio para uso',1,1);
 	END
 END;
