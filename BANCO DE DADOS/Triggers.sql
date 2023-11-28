@@ -25,21 +25,12 @@ BEGIN
 	print 'Email do Cliente '+cast(@Email as char)
 	print 'Senha do Cliente '+cast(@senha_Cliente as char)
 
-	if datediff(year, @Data_NascCliente, getdate()) <= 10
-	BEGIN
-			print'Crinça paga meia'
-			RAISERROR('Criança paga meia',1,1);
-	END
-	else
-			print'Paga normal'
 
-	if @Data_NascCliente >= 18
+	if datediff(year, @Data_NascCliente, getdate()) <= 18	
 	BEGIN
-			print'Permitido beber bebidas alcólicas'
-			RAISERROR('Permitido beber bebidas alcólicas',1,1);
+
+			RAISERROR('Proíbido beber bebidas alcoólicas',1,1);
 	END
-	else
-			print'Proibido beber bebidas alcólicas'
 END;
 
 CREATE TRIGGER trMesa
@@ -62,11 +53,8 @@ BEGIN
 
 	if @Quant_Pessoas > 6
 	BEGIN
-			print'Capacidade maxima atingida, juntar outra mesa'
 			RAISERROR('Capacidade maxima atingida, juntar outra mesa',1,1);
 	END
-	else
-			print'Quantidade aceitavel'
 END;
  
 CREATE TRIGGER trReserva
@@ -100,11 +88,8 @@ BEGIN
 
 	if datediff(year, @NovaMesa, getdate()) <= @id_Mesa
 	BEGIN
-			print'Mesa Reservada, reserve outra mesa'
 			RAISERROR('Mesa Reservada, reserve outra mesa',1,1);
 	END
-	else
-			print'Mesa Disponível'
 
 END;
 
@@ -137,10 +122,6 @@ BEGIN
 
 	if datediff(year, @dataIngrediente, getdate()) <= @Data_Vencimento
 	BEGIN
-			print'Ingrediente não proprio para uso'
+			RAISERROR('Ingrediente não proprio para uso',1,1);
 	END
-	else
-			print'Ingrediente propio para uso'
-
-
 END;
